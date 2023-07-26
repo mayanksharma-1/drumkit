@@ -5,4 +5,14 @@ window.addEventListener('keydown',function(e){
         audio.currentTime = 0; // reset the sound currently playing when another is clicked
         audio.play();
         }
+    const drum = document.querySelector(`.drum[data-key=${e.code}]`);
+    drum.classList.add('playing');
+    const drums = document.querySelectorAll('.drum');
+
+    function removeGlow(e){
+        if (e.propertyName !== 'transform') return;
+        this.classList.remove('playing');
+    }
+
+    drums.forEach(drum => drum.addEventListener('transitionend',removeGlow));
 });
